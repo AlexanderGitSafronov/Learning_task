@@ -11,6 +11,5 @@ const OPERATIONS = {
   ["/"]: (a, b) => a / b,
 };
 
-result.addEventListener("click", () =>
-  OPERATIONS[operation.value](firstNumber.value, secondNumber.value)
+result.addEventListener("click", () => OPERATIONS[operation.value](firstNumber.value, secondNumber.value)
 );
