@@ -4,21 +4,14 @@ const result = document.querySelector('.result')
 const operation = document.querySelector('.operation')
 const resultOut = document.querySelector('.result__out')
 
-result.addEventListener('click', ()=>{
-    switch (operation.value) {
-        case '+':
-            resultOut.innerHTML = (+firstNumber.value + +secondNumber.value);
-        break;
-        case '-':
-            resultOut.innerHTML = (+firstNumber.value - +secondNumber.value);
-        break;
-        case '*':
-            resultOut.innerHTML = (+firstNumber.value * +secondNumber.value);
-        break;
-        case '/':
-            resultOut.innerHTML = (+firstNumber.value / +secondNumber.value);
-        break;
-        default:
-            break;
-    }
+
+const OPERATIONS = {
+    ['+'] : (a,b) => a + b,
+    ['-'] : (a,b) => a - b,
+    ['*'] : (a,b) => a * b,
+    ['/'] : (a,b) => a / b
+}
+
+result.addEventListener('click', () => {
+    return OPERATIONS[operation.value](firstNumber.value,secondNumber.value)
 })
