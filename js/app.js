@@ -15,7 +15,7 @@ result.addEventListener(
   "click",
   () =>
     (resultOut.innerHTML = OPERATIONS[operation.value](
-      firstNumber.value,
-      secondNumber.value
+      +firstNumber.value,
+      +secondNumber.value
     ))
 );
