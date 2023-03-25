@@ -25,11 +25,6 @@ function deleteInputClick() {
       setTimeout(() => {
         disabletResut();
       }, 50);
-
-      // Если кнопок удаления ьольше чем две то можно делать удаление блока инпута с кнопкой
-      // if (delInput.length > 2) {
-      //   item.closest(".inp").remove();
-      // }
     });
   });
 }
@@ -181,6 +176,7 @@ addInput.addEventListener("click", () => {
         numbInput = Array.from(document.querySelectorAll(".number__input"));
         delInput = document.querySelectorAll(".del");
       }, 50);
+
       setTimeout(() => {
         let checkingForEmptyInput = false;
 
@@ -246,6 +242,10 @@ function disabletResut() {
         result.setAttribute("disabled", true);
       } else {
         result.removeAttribute("disabled");
+      }
+
+      if (numbInput.length + 1 > 2 && operation.value === "/") {
+        result.setAttribute("disabled", true);
       }
     });
   });
