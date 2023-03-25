@@ -244,7 +244,7 @@ function disabletResut() {
         result.removeAttribute("disabled");
       }
 
-      if (numbInput.length + 1 > 2 && operation.value === "/") {
+      if (numbInput.length > 2 && operation.value === "/") {
         result.setAttribute("disabled", true);
       }
     });
