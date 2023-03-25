@@ -7,15 +7,30 @@
     <title>Document</title>
   </head>
   <body>
-    <input class="first__number" type="number" />
-    <input class="second__number" type="number" />
+    <div class="out-input" style="margin-bottom: 20px">
+      <div class="inp">
+        <input class="first__number number__input" type="number" /><button
+          class="del"
+        >
+          X
+        </button>
+      </div>
+      <div class="inp">
+        <input class="second__number number__input" type="number" /><button
+          class="del"
+        >
+          X
+        </button>
+      </div>
+    </div>
     <select class="operation" name="" id="">
       <option value="+">+</option>
       <option value="-">-</option>
       <option value="*">*</option>
-      <option value="/">/</option>
+      <option class="division" value="/">/</option>
     </select>
     <button class="result">Расчитать</button>
+    <button class="add__input">Add input</button>
 
     <div class="result__out"></div>
     <script src="./js/app.js"></script>
