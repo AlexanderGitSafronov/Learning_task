@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
   </head>
   <body>
-    <input class="first__number" type="number" />
-    <input class="second__number" type="number" />
+    <div class="inputs">
+      <input class="first__number" type="number" />
+      <input class="second__number" type="number" />
+    </div>
+    
     <select class="operation" name="" id="">
       <option value="+">+</option>
       <option value="-">-</option>
@@ -16,7 +20,7 @@
       <option value="/">/</option>
     </select>
     <button class="result">Расчитать</button>
-
+    <button class="add__input">Add input</button>
     <div class="result__out"></div>
 
     <script src="./js/app.js"></script>
