@@ -34,11 +34,8 @@ result.addEventListener("click", () => {
 });
 
 // Видалення Input
-function deletingInput() {
-  inputsBlock.addEventListener("click", (e) => {
-    if (e.target.className === "delete__input") {
-      e.target.closest(".wrapper__input").remove();
-    }
-  });
-}
-deletingInput();
+inputsBlock.addEventListener("click", (e) => {
+  if (e.target.className === "delete__input") {
+    e.target.closest(".wrapper__input").remove();
+  }
+});
