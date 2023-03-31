@@ -41,3 +41,4 @@ function reduceInputs(inputs) {
   }, +inputs[0].value);
   return result;
 }
+
