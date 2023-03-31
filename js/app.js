@@ -16,7 +16,6 @@ addInput.addEventListener("click", () => {
                         <input class="input" type="number" /><button class="delete__input">Delete</button>
                     </div>`;
   inputsBlock.insertAdjacentHTML("beforeend", newInput);
-  deleteInput();
 });
 
 function reduceInputs(inputs) {
@@ -31,15 +30,15 @@ function reduceInputs(inputs) {
 }
 
 result.addEventListener("click", () => {
-  resultOut.innerHTML = reduceInputs(getinputs());
+  resultOut.innerHTML = reduceInputs(getInputs());
 });
 
 // Видалення Input
-function deleteInput() {
-  getDelete().forEach((item) => {
-    item.addEventListener("click", (e) => {
+function deletingInput() {
+  inputsBlock.addEventListener("click", (e) => {
+    if (e.target.className === "delete__input") {
       e.target.closest(".wrapper__input").remove();
-    });
+    }
   });
 }
-deleteInput();
+deletingInput();
