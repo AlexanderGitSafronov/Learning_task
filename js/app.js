@@ -4,63 +4,27 @@ const resultOut = document.querySelector(".result__out");
 
 const inputsBlock = document.querySelector(".inputs");
 const addInput = document.querySelector(".add__input");
-let inputs = Array.from(document.querySelectorAll(".input"));
+
+function getInputs(){
+  return Array.from(document.querySelectorAll(".input"));
+}
 
 addInput.addEventListener("click", () => {
   const newInput = `<input class="input" type="number" />`;
   inputsBlock.insertAdjacentHTML("beforeend", newInput);
-  inputs = document.querySelectorAll(".input");
 });
+
+function reduceInputs(inputs) {
+  let result = inputs.slice(1).reduce((acc, item) => {
+    operation.value === "+" ? (acc += +item.value) : "";
+    operation.value === "-" ? (acc -= +item.value) : "";
+    operation.value === "*" ? (acc *= +item.value) : "";
+    operation.value === "/" ? (acc /= +item.value) : "";
+    return acc;
+  }, +inputs[0].value);
+  return result;
+}
 
 result.addEventListener("click", () => {
-  calculation(inputs);
+  resultOut.innerHTML = reduceInputs(getinputs());
 });
-
-function calculation(inputs) {
-  if (operation.value === "+") {
-    let resPlus = 0;
-    inputs.forEach((item) => {
-      resPlus += +item.value;
-    });
-    resultOut.innerHTML = resPlus;
-  }
-
-  if (operation.value === "-") {
-    let resSubtraction = 0;
-    inputs.forEach((item, idx) => {
-      if (idx === 0) {
-        resSubtraction = item.value;
-      }
-      if (idx > 0) {
-        resSubtraction -= item.value;
-      }
-    });
-    resultOut.innerHTML = resSubtraction;
-  }
-
-  if (operation.value === "*") {
-    let resSubtraction = 0;
-    inputs.forEach((item, idx) => {
-      if (idx === 0) {
-        resSubtraction = item.value;
-      }
-      if (idx > 0) {
-        resSubtraction *= item.value;
-      }
-    });
-    resultOut.innerHTML = resSubtraction;
-  }
-
-  if (operation.value === "/") {
-    let resSubtraction = 0;
-    inputs.forEach((item, idx) => {
-      if (idx === 0) {
-        resSubtraction = item.value;
-      }
-      if (idx > 0) {
-        resSubtraction /= item.value;
-      }
-    });
-    resultOut.innerHTML = resSubtraction;
-  }
-}
