@@ -28,3 +28,4 @@ function reduceInputs(inputs) {
 result.addEventListener("click", () => {
   resultOut.innerHTML = reduceInputs(getinputs());
 });
+
