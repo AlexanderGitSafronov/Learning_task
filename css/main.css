@@ -13,3 +13,10 @@ body{
 button{
     margin-right: 20px;
 }
+
+.error {
+    display: none;
+}
+.error__message{
+    color: red;
+    }
