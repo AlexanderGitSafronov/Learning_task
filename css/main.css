@@ -1,22 +1,22 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    padding: 20px;
+body {
+  padding: 20px;
 }
-.inputs{
-    display: flex;
-    margin-bottom: 20px;
+.inputs {
+  display: flex;
+  margin-bottom: 20px;
 }
-button{
-    margin-right: 20px;
+button {
+  margin-right: 20px;
 }
 
 .error {
-    display: none;
+  display: none;
 }
-.error__message{
-    color: red;
-    }
+.error__message {
+  color: red;
+}

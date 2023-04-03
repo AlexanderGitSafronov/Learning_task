@@ -11,9 +11,8 @@ addInput.addEventListener("click", () => {
                         <input class="input" type="number" /><button class="delete__input">Delete</button>
                     </div>`;
   inputsBlock.insertAdjacentHTML("beforeend", newInput);
-  if (getInputs().length > 2) {
-    error.style.display = "none";
-  }
+
+  error.style.display = "none";
 });
 
 // Результат операції
@@ -23,10 +22,11 @@ result.addEventListener("click", () => {
 
 // Взаємодія з кнопкою видалення
 inputsBlock.addEventListener("click", (e) => {
-  if (e.target.className === "delete__input" && getInputs().length <= 2) {
+  const deleteInput = e.target.className === "delete__input";
+  if (deleteInput && getInputs().length <= 2) {
     error.style.display = "block";
   }
-  if (e.target.className === "delete__input" && getInputs().length > 2) {
+  if (deleteInput && getInputs().length > 2) {
     e.target.closest(".wrapper__input").remove();
   }
 });
