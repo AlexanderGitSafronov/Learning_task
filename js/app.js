@@ -6,24 +6,34 @@ const addInput = document.querySelector(".add__input");
 const error = document.querySelector(".error");
 let wrapperInput = document.querySelectorAll(".wrapper__input");
 
-const errorMessage = `<div class="error">
-        <p class="error__message">Не можна видалити 2 останні інпути</p>
-      </div>`;
 // Добаляєм поля Input
 addInput.addEventListener("click", () => {
   const newInput = `<div class="wrapper__input">
   <input class="input" type="number" /><button class="delete__input">Delete</button>
   </div>`;
-  setTimeout(() => {
-    if (getInputs().length < 5) {
+  if (getInputs().length < 5) {
+    if (lastChildren().classList.contains("error")) {
+      lastChildren().remove();
+    }
+    inputsBlock.insertAdjacentHTML("beforeend", newInput);
+  } else {
+    errorCount();
+  }
+});
+
+// Взаємодія з кнопкою видалення
+inputsBlock.addEventListener("click", (e) => {
+  if (e.target.className === "delete__input") {
+    if (getInputs().length <= 2) {
+      errorCount();
+    }
+    if (getInputs().length > 2) {
+      e.target.closest(".wrapper__input").remove();
       if (lastChildren().classList.contains("error")) {
         lastChildren().remove();
       }
-      inputsBlock.insertAdjacentHTML("beforeend", newInput);
-    } else {
-      errorCount();
     }
-  }, 100);
+  }
 });
 
 // Результат операції
@@ -31,27 +41,7 @@ result.addEventListener("click", () => {
   resultOut.innerHTML = reduceInputs(getInputs());
 });
 
-// Взаємодія з кнопкою видалення
-inputsBlock.addEventListener("click", (e) => {
-  if (e.target.className === "delete__input") {
-    setTimeout(() => {
-      if (getInputs().length <= 2) {
-        if (!lastChildren().classList.contains("error")) {
-          inputsBlock.insertAdjacentHTML("beforeend", errorMessage);
-        }
-      }
-    }, 100);
-    setTimeout(() => {
-      if (getInputs().length > 2) {
-        e.target.closest(".wrapper__input").remove();
-        if (lastChildren().classList.contains("error")) {
-          lastChildren().remove();
-        }
-      }
-    }, 100);
-  }
-});
-
+// Плучаєм елементи
 function getInputs() {
   return Array.from(document.querySelectorAll(".input"));
 }
@@ -62,6 +52,7 @@ function lastChildren() {
   return inputsBlock.lastElementChild;
 }
 
+// Функція розрахунку
 function reduceInputs(inputs) {
   let result = inputs.slice(1).reduce((acc, item) => {
     operation.value === "+" ? (acc += +item.value) : "";
@@ -73,7 +64,11 @@ function reduceInputs(inputs) {
   return result;
 }
 
+// Перевіряєм якщо в останньому дочерньому елементі є клас error то добавляєм помилку.
 function errorCount() {
+  const errorMessage = `<div class="error">
+           <p class="error__message">Не можна видалити 2 останні інпути</p>
+  </div>`;
   if (!lastChildren().classList.contains("error")) {
     inputsBlock.insertAdjacentHTML("beforeend", errorMessage);
   }
