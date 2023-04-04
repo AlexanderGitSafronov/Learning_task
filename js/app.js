@@ -38,7 +38,6 @@ function getInputs() {
 function getDelete() {
   return Array.from(document.querySelectorAll(".delete__input"));
 }
-
 function reduceInputs(inputs) {
   let result = inputs.slice(1).reduce((acc, item) => {
     operation.value === "+" ? (acc += +item.value) : "";
