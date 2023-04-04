@@ -22,12 +22,13 @@ result.addEventListener("click", () => {
 
 // Взаємодія з кнопкою видалення
 inputsBlock.addEventListener("click", (e) => {
-  const deleteInput = e.target.className === "delete__input";
-  if (deleteInput && getInputs().length <= 2) {
-    error.style.display = "block";
-  }
-  if (deleteInput && getInputs().length > 2) {
-    e.target.closest(".wrapper__input").remove();
+  if (e.target.className === "delete__input") {
+    if (getInputs().length <= 2) {
+      error.style.display = "block";
+    }
+    if (getInputs().length > 2) {
+      e.target.closest(".wrapper__input").remove();
+    }
   }
 });
 
