@@ -3,6 +3,7 @@ const operation = document.querySelector(".operation");
 const resultOut = document.querySelector(".result__out");
 const inputsBlock = document.querySelector(".inputs");
 const addInput = document.querySelector(".add__input");
+const error = document.querySelector(".error");
 
 // Добаляєм поля Input
 addInput.addEventListener("click", () => {
@@ -10,6 +11,8 @@ addInput.addEventListener("click", () => {
                         <input class="input" type="number" /><button class="delete__input">Delete</button>
                     </div>`;
   inputsBlock.insertAdjacentHTML("beforeend", newInput);
+
+  error.style.display = "none";
 });
 
 // Результат операції
@@ -17,10 +20,15 @@ result.addEventListener("click", () => {
   resultOut.innerHTML = reduceInputs(getInputs());
 });
 
-// Видалення Input
+// Взаємодія з кнопкою видалення
 inputsBlock.addEventListener("click", (e) => {
   if (e.target.className === "delete__input") {
-    e.target.closest(".wrapper__input").remove();
+    if (getInputs().length <= 2) {
+      error.style.display = "block";
+    }
+    if (getInputs().length > 2) {
+      e.target.closest(".wrapper__input").remove();
+    }
   }
 });
 
