@@ -4,6 +4,7 @@ const resultOut = document.querySelector(".result__out");
 const inputsBlock = document.querySelector(".inputs");
 const addInput = document.querySelector(".add__input");
 const error = document.querySelector(".error");
+const errorMessage = document.querySelector(".error__message");
 let wrapperInput = document.querySelectorAll(".wrapper__input");
 
 // Добаляєм поля Input
@@ -12,12 +13,11 @@ addInput.addEventListener("click", () => {
   <input class="input" type="number" /><button class="delete__input">Delete</button>
   </div>`;
   if (getInputs().length < 5) {
-    if (lastChildren().classList.contains("error")) {
-      lastChildren().remove();
-    }
+    error.style.display = "none";
     inputsBlock.insertAdjacentHTML("beforeend", newInput);
   } else {
-    errorCount();
+    error.style.display = "block";
+    errorMessage.textContent = "Не можна добавити більше 5 інпутів";
   }
 });
 
@@ -25,13 +25,12 @@ addInput.addEventListener("click", () => {
 inputsBlock.addEventListener("click", (e) => {
   if (e.target.className === "delete__input") {
     if (getInputs().length <= 2) {
-      errorCount();
+      error.style.display = "block";
+      errorMessage.textContent = "Не можна видалити 2 останні інпути";
     }
     if (getInputs().length > 2) {
       e.target.closest(".wrapper__input").remove();
-      if (lastChildren().classList.contains("error")) {
-        lastChildren().remove();
-      }
+      error.style.display = "none";
     }
   }
 });
@@ -62,14 +61,4 @@ function reduceInputs(inputs) {
     return acc;
   }, +inputs[0].value);
   return result;
-}
-
-// Перевіряєм якщо в останньому дочерньому елементі є клас error то добавляєм помилку.
-function errorCount() {
-  const errorMessage = `<div class="error">
-           <p class="error__message">Не можна видалити 2 останні інпути</p>
-  </div>`;
-  if (!lastChildren().classList.contains("error")) {
-    inputsBlock.insertAdjacentHTML("beforeend", errorMessage);
-  }
 }
