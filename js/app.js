@@ -7,16 +7,17 @@ const error = document.querySelector(".error");
 const errorMessage = document.querySelector(".error__message");
 let wrapperInput = document.querySelectorAll(".wrapper__input");
 
-// Добаляєм поля Input
-addInput.addEventListener("click", () => {
-  const newInput = `<div class="wrapper__input">
+const newInput = `<div class="wrapper__input">
   <input class="input" type="number" /><button class="delete__input">Delete</button>
   </div>`;
+
+// Добаляєм поля Input
+addInput.addEventListener("click", () => {
   if (getInputs().length < 5) {
-    hideError()
+    hideError();
     inputsBlock.insertAdjacentHTML("beforeend", newInput);
   } else {
-    showError("Не можна добавити більше 5 інпутів")
+    showError("Не можна добавити більше 5 інпутів");
   }
 });
 
@@ -24,7 +25,7 @@ addInput.addEventListener("click", () => {
 inputsBlock.addEventListener("click", (e) => {
   if (e.target.className === "delete__input") {
     if (getInputs().length <= 2) {
-      showError("Не можна видалити 2 останні інпути")
+      showError("Не можна видалити 2 останні інпути");
     }
     if (getInputs().length > 2) {
       e.target.closest(".wrapper__input").remove();
@@ -46,12 +47,12 @@ function getDelete() {
   return Array.from(document.querySelectorAll(".delete__input"));
 }
 // Показати помилку
-function showError(Text){
-    error.style.display = "block";
-    errorMessage.textContent = Text;
+function showError(text) {
+  error.style.display = "block";
+  errorMessage.textContent = text;
 }
 // сховати помилку
-function hideError(){
+function hideError() {
   error.style.display = "none";
 }
 
