@@ -20,3 +20,6 @@ button {
 .error__message {
   color: red;
 }
+.block_inp {
+  display: flex;
+}
