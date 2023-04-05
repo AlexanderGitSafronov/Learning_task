@@ -13,11 +13,10 @@ addInput.addEventListener("click", () => {
   <input class="input" type="number" /><button class="delete__input">Delete</button>
   </div>`;
   if (getInputs().length < 5) {
-    error.style.display = "none";
+    hideError()
     inputsBlock.insertAdjacentHTML("beforeend", newInput);
   } else {
-    error.style.display = "block";
-    errorMessage.textContent = "Не можна добавити більше 5 інпутів";
+    showError("Не можна добавити більше 5 інпутів")
   }
 });
 
@@ -25,12 +24,11 @@ addInput.addEventListener("click", () => {
 inputsBlock.addEventListener("click", (e) => {
   if (e.target.className === "delete__input") {
     if (getInputs().length <= 2) {
-      error.style.display = "block";
-      errorMessage.textContent = "Не можна видалити 2 останні інпути";
+      showError("Не можна видалити 2 останні інпути")
     }
     if (getInputs().length > 2) {
       e.target.closest(".wrapper__input").remove();
-      error.style.display = "none";
+      hideError();
     }
   }
 });
@@ -47,8 +45,14 @@ function getInputs() {
 function getDelete() {
   return Array.from(document.querySelectorAll(".delete__input"));
 }
-function lastChildren() {
-  return inputsBlock.lastElementChild;
+// Показати помилку
+function showError(Text){
+    error.style.display = "block";
+    errorMessage.textContent = Text;
+}
+// сховати помилку
+function hideError(){
+  error.style.display = "none";
 }
 
 // Функція розрахунку
